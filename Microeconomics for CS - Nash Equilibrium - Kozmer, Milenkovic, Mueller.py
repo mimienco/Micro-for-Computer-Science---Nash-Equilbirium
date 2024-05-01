@@ -1,5 +1,13 @@
 import numpy as np
 
+#A function to print the matrix of a single player
+def print_matrix(matrix):
+    n = matrix.shape[0]
+    for i in range(n):
+        for j in range(n):
+            print(f"{matrix[i, j]}", end="\t")
+        print()
+
 # A function to print the combined payoff matrix
 def print_matrices(A, B):
     n = A.shape[0]
@@ -36,15 +44,22 @@ np.random.seed(41)
 A = np.random.randint(1, 11, size=(n, n))  
 B = np.random.randint(1, 11, size=(n, n))
 
+#Print the single matrices
+print("\nMatrix A:")
+print_matrix(A)
+print("\nMatrix B:")
+print_matrix(B)
+
 # Print the results in the terminal
-print("\nCombined Payoff Matrices for Player A and Player B:")
+print("\nCombined Payoff Matrices for Player 1 and Player 2:")
 print_matrices(A, B)
 
+# Decide if there is a Nash Equilibrium and print it else print that there is no pure strategy equilibrium
 equilibria = NashEquilibrium(A, B)
 if equilibria:
     print("\nNash Equilibria:")
     for eq in equilibria:
         print(f"The action profile {eq} is a Nash equilibrium.")
-        print(f"That means: Player 1 plays s{eq[0]} and Player 2 plays s{eq[1]}.")
+        print(f"\nThat means: Player 1 plays s{eq[0]} and Player 2 plays s{eq[1]}.")
 else:
     print("Unfortunately, no pure strategy equilibrium exists.")
